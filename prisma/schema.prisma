@@ -4,8 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -17,4 +17,5 @@ model usuarios {
   usuario_telefone   String  @db.VarChar(20)
   usuario_nascimento String? @db.VarChar(20)
   usuario_cpf        String  @db.VarChar(20)
+  usuario_nivel      String? @db.VarChar
 }
