@@ -49,8 +49,7 @@ async function login(dados) {
 
                 return {
                     usuario,
-                    token,
-                    usuario
+                    token
                 }
             }
         }
