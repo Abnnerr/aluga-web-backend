@@ -33,27 +33,34 @@ async function cadastro(dados) {
     }
 }
 
-// async function login(dados) {
+async function login(dados) {
 
-//     try {
-//         let usuario = await prisma.usuarios.findFirst( {
-//             where: {
-//                 usuario_email: dados.usuario_email
-//             }
-//         })
-//         if (usuario) {
-//             let verificarSenha = bcrypt.compare(dados.usuario_senha, usuario.usuario_senha)
+    try {
+        let usuario = await prisma.usuarios.findFirst( {
+            where: {
+                usuario_email: dados.usuario_email
+            }
+        })
+        if (usuario) {
+            let verificarSenha = bcrypt.compare(dados.usuario_senha, usuario.usuario_senha)
 
-//             if (verificarSenha) {
-//                 let token = jwt.sign({usuario.usuario_senha})
-//             }
-//         }
-//     } catch (error) {
-        
-//     }
-// }
+            if (verificarSenha) {
+                let token = jwt.sign({data: usuario.usuario_senha,}, process.env.SEGREDO, {expiresIn: "1h"})
 
-
+                return {
+                    usuario,
+                    token
+                }
+            }
+        }
+    } catch (error) {
+        return {
+            tipo: 'warning',
+            message: error.message
+        }
+    }
+}
 module.exports = {
-    cadastro
+    cadastro,
+    login
 }
