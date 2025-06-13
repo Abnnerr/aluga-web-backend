@@ -11,7 +11,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", rotaProtegida , async (req, res) => {
-  res.send( await criarImoveis(req.body));
+  res.send( await criarImoveis(req));
 });
 router.put("/:id", rotaProtegida , async (req, res) => {
   res.send(`Edita um imovel id: ${req.params.id}`);
