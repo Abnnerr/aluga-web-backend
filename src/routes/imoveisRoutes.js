@@ -1,22 +1,23 @@
 
+
 const router = require("express").Router();
 
-const {buscarUsuarios, criarUsuario, apagarUsuario } = require("../controller/usuariosController.js");
+const { buscarImoveis, criarImoveis , apagarImoveis } = require("../controller/imoveisController.js");
 const { rotaProtegida } = require("../utils/index.js");
 
 
 router.get("/", async (req, res) => {
-  res.send(await buscarUsuarios());
+  res.send(await buscarImoveis());
 });
 
 router.post("/", rotaProtegida , async (req, res) => {
-  res.send( await criarUsuario(req.body));
+  res.send( await criarImoveis(req));
 });
 router.put("/:id", rotaProtegida , async (req, res) => {
-  res.send(`Edita um usuario id: ${req.params.id}`);
+  res.send(`Edita um imovel id: ${req.params.id}`);
 });
 router.delete("/:id", rotaProtegida , async (req, res) => {
-  res.send(await apagarUsuario(req.params.id));
+  res.send(await apagarImoveis(req.params.id));
 });
 
 
