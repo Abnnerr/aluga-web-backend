@@ -10,12 +10,46 @@ datasource db {
 }
 
 model usuarios {
-  usuario_id         Int     @id @unique(map: "usuario_id") @default(autoincrement())
-  usuario_nome       String  @db.VarChar(100)
-  usuario_email      String  @unique(map: "usuario_email") @db.VarChar(100)
-  usuario_senha      String  @db.VarChar(255)
-  usuario_telefone   String  @db.VarChar(20)
-  usuario_nascimento String? @db.VarChar(20)
-  usuario_cpf        String  @db.VarChar(20)
-  usuario_nivel      String? @db.VarChar
+  usuario_id         Int        @id @unique(map: "usuario_id") @default(autoincrement())
+  usuario_nome       String     @db.VarChar(100)
+  usuario_email      String     @unique(map: "usuario_email") @db.VarChar(100)
+  usuario_senha      String     @db.VarChar(255)
+  usuario_telefone   String     @db.VarChar(20)
+  usuario_nascimento String?    @db.VarChar(20)
+  usuario_cpf        String     @db.VarChar(20)
+  usuario_nivel      String?    @db.VarChar
+  favorito           favorito[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model imoveis {
+  imovel_id               Int        @id @default(autoincrement())
+  imovel_estado           String     @db.VarChar
+  imovel_bairro           String?    @db.VarChar
+  imovel_logradouro       String?    @db.VarChar
+  imovel_numero           String?    @db.VarChar
+  imovel_complemento      String?    @db.VarChar
+  imovel_cep              String?    @db.VarChar
+  imovel_tipo             String?    @db.VarChar
+  imovel_modalidade       String?    @db.VarChar
+  imovel_valor            String?    @db.VarChar
+  imovel_valor_condominio String?    @db.VarChar
+  imovel_descricao        String?    @db.VarChar
+  imovel_img              String?    @db.VarChar
+  imovel_banheiro         String?    @db.VarChar
+  imovel_garagem          String?    @db.VarChar
+  imovel_area             String?    @db.VarChar
+  imovel_quarto           String?    @db.VarChar
+  imovel_cidade           String?    @db.VarChar
+  imovel_rua              String?    @db.VarChar
+  favorito                favorito[]
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model favorito {
+  favorito_id Int       @id @default(autoincrement())
+  imovel_id   Int
+  usuario_id  Int?
+  imoveis     imoveis   @relation(fields: [imovel_id], references: [imovel_id], onDelete: NoAction, onUpdate: NoAction)
+  usuarios    usuarios? @relation(fields: [usuario_id], references: [usuario_id], onDelete: NoAction, onUpdate: NoAction)
 }
