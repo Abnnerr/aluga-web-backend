@@ -30,6 +30,8 @@ async function buscarImovel(dados) {
       filtros.imovel_garagem = dados.imovel_garagem;
     }
 
+
+    
     if (dados.imovel_banheiro) {
       filtros.imovel_banheiro = dados.imovel_banheiro;
     }
