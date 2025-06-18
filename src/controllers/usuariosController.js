@@ -7,6 +7,7 @@ const saltRolts = 10;
 async function cadastro(dados) {
 
 
+    
     try {
         let senhaCriptografada = await bcrypt.hash(dados.usuario_senha, saltRolts)
         dados = {...dados, usuario_senha: senhaCriptografada}
