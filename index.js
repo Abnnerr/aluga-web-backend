@@ -6,7 +6,8 @@ const port = 8000;
 const usuariosRoutes = require('./src/routes/usuariosRoutes.js');
 const imoveisRoutes = require('./src/routes/usuariosRoutes.js');
 const { cadastro, login } = require("./src/controllers/usuariosController.js");
-const {buscarImovel, criarImovel} = require("./src/controllers/imoveisController.js")
+const {buscarImovel, criarImovel} = require("./src/controllers/imoveisController.js");
+const { favoritar } = require("./src/controllers/favoritosController.js");
 
 app.use(cors())
 app.use(express.json())
@@ -18,7 +19,9 @@ app.post('/login', async (req,res) => {
     res.send(await login(req.body))
 })
 
-// app.post('/favoritos', async (req))
+app.post('/favoritos', async (req,res) => {
+    res.send( await favoritar(req.body))
+})
 app.post('/imoveis', async (req, res) => {
     res.send(await buscarImovel(req.body) )
 })
