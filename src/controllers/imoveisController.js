@@ -50,11 +50,11 @@ async function buscarImovel(dados) {
   }
 }
 
-// async function criarImovel(dados) {
-//   return await prisma.imoveis.create({
-//     data: dados
-//   })
-// }
+async function criarImovel(dados) {
+  return await prisma.imoveis.create({
+    data: dados
+  })
+}
 
 // async function buscarUmImovel(id) {
 //     try {
@@ -98,5 +98,8 @@ async function buscarImovel(dados) {
 // }
 
 module.exports = { buscarImovel, 
-  // buscarUmImovel, criarImovel, editarImovel, apagarImovel 
+  criarImovel,
+  // buscarUmImovel, 
+  // editarImovel
+  // apagarImovel 
 }

@@ -4,9 +4,9 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider  = "mysql"
   url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  // directUrl = env("DIRECT_URL")
 }
 
 model usuarios {
@@ -17,31 +17,31 @@ model usuarios {
   usuario_telefone   String     @db.VarChar(20)
   usuario_nascimento String?    @db.VarChar(20)
   usuario_cpf        String     @db.VarChar(20)
-  usuario_nivel      String?    @db.VarChar
+  usuario_nivel      String?    @db.VarChar(20)
   favorito           favorito[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model imoveis {
   imovel_id               Int        @id @default(autoincrement())
-  imovel_estado           String     @db.VarChar
-  imovel_bairro           String?    @db.VarChar
-  imovel_logradouro       String?    @db.VarChar
-  imovel_numero           String?    @db.VarChar
-  imovel_complemento      String?    @db.VarChar
-  imovel_cep              String?    @db.VarChar
-  imovel_tipo             String?    @db.VarChar
-  imovel_modalidade       String?    @db.VarChar
-  imovel_valor            String?    @db.VarChar
-  imovel_valor_condominio String?    @db.VarChar
-  imovel_descricao        String?    @db.VarChar
-  imovel_img              String?    @db.VarChar
-  imovel_banheiro         String?    @db.VarChar
-  imovel_garagem          String?    @db.VarChar
-  imovel_area             String?    @db.VarChar
-  imovel_quarto           String?    @db.VarChar
-  imovel_cidade           String?    @db.VarChar
-  imovel_rua              String?    @db.VarChar
+  imovel_estado           String     @db.VarChar(20)
+  imovel_bairro           String?    @db.VarChar(30)
+  imovel_logradouro       String?    @db.VarChar(50)
+  imovel_numero           String?    @db.VarChar(20)
+  imovel_complemento      String?    @db.VarChar(100)
+  imovel_cep              String?    @db.VarChar(100)
+  imovel_tipo             String?    @db.VarChar(50)
+  imovel_modalidade       String?    @db.VarChar(40)
+  imovel_valor            String?    @db.VarChar(30)
+  imovel_valor_condominio String?    @db.VarChar(30)
+  imovel_descricao        String?    @db.VarChar(100)
+  imovel_img              String?    @db.VarChar(255)
+  imovel_banheiro         String?    @db.VarChar(30)
+  imovel_garagem          String?    @db.VarChar(30)
+  imovel_area             String?    @db.VarChar(30)
+  imovel_quarto           String?    @db.VarChar(30)
+  imovel_cidade           String?    @db.VarChar(30)
+  imovel_rua              String?    @db.VarChar(30)
   favorito                favorito[]
 }
 
@@ -50,8 +50,7 @@ model favorito {
   favorito_id Int       @id @default(autoincrement())
   imovel_id   Int
   usuario_id  Int?
+  createdAt   DateTime  @default(now())
   imoveis     imoveis   @relation(fields: [imovel_id], references: [imovel_id])
   usuarios    usuarios? @relation(fields: [usuario_id], references: [usuario_id])
-
-  createdAt DateTime @default(now())
 }
