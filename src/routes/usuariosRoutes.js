@@ -1,24 +1,21 @@
+// const { buscarUsuarios, criarUsuario, editarUsuarios, apagarUsuario} = require("../controllers/usuariosController")
 
-// const router = require("express").Router();
 
-// const {buscarUsuarios, criarUsuario, apagarUsuario } = require("../controller/usuariosController.js");
-// const { rotaProtegida } = require("../utils/index.js");
+// const router = require("express").Router()
 
 
 // router.get("/", async (req, res) => {
-//   res.send(await buscarUsuarios());
-// });
-
-// router.post("/", rotaProtegida , async (req, res) => {
-//   res.send( await criarUsuario(req.body));
-// });
-// router.put("/:id", rotaProtegida , async (req, res) => {
-//   res.send(`Edita um usuario id: ${req.params.id}`);
-// });
-// router.delete("/:id", rotaProtegida , async (req, res) => {
-//   res.send(await apagarUsuario(req.params.id));
-// });
-
-
-
-// module.exports = router;
+//     res.send(await buscarUsuarios())
+// })
+// router.get("/:id", async (req, res) => {
+//     res.send(await buscarUsuarios(req.params.id))
+// })
+// router.post("/", async (req, res) => {
+//     res.send(await criarUsuario(req.body))
+// })
+// router.put("/:id", async (req, res) => {
+//     res.send(await editarUsuarios(req.params.id, req.body))
+// })
+// router.delete("/:id", (req, res) => {
+//     res.send(apagarUsuario(req.params.id))
+// })
